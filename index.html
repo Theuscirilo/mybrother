@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagem Misteriosa</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function mostrarMensagem() {
+            const mensagem = document.getElementById("mensagem");
+            const botao = document.getElementById("botao");
+            const audio = document.getElementById("audio");
+            const quadro = document.getElementById("quadro");
+            const textoQuadro = document.getElementById("texto-quadro");
+
+            botao.style.animation = "none"; // Remove o efeito pulsante ao clicar
+            botao.style.display = "none"; // Esconde o botão
+
+            audio.play(); // Reproduz som de suspense
+
+            let texto = "Sempre sonhei em ser como você. Sempre te achei bonito e inteligente, e todo mundo sabia que você iria se dar bem. Fico muito feliz que isso realmente aconteceu. Tenho saudades da época em que você tinha o restaurante. Era muito divertido ir aí passear. Você tem uma mente empreendedora e tenho certeza de que, em breve, terá sua própria empresa. Torço muito por isso! Queria muito passar uns dias com você de verdade, mas, infelizmente, cresci e preciso voltar a trabalhar. Eu tenho o sonho de ir para a escola com meu próprio carro. Não é por ostentação, é simplesmente porque sempre quis isso: vencer na vida aos 17 anos e ter minha independência. Infelizmente, ainda não consegui. Mas, se eu trabalhar por seis meses ganhando o que ganho hoje, consigo pelo menos comprar meu carro. KKKK Sinto falta de ser criança novamente, de poder jogar bola sem me preocupar com nada. Muitos acham que estou assim por causa da Maria. Provavelmente, já te falaram isso. Mas, na verdade, ela é a única que me entende. Eu só queria conversar com ela. Eu sempre disse uma frase para todo mundo que me conhece: Eu sempre estou bem. E, realmente, sempre estou. Acho que só tenho uma ambição muito grande de vencer. Sei que tenho um jeito preguiçoso e gosto de dormir demais, e sei que assim não vou chegar aonde quero. Mas, desde o começo, a minha maior luta tem sido comigo mesmo. Desculpa por ter feito você perder alguns minutos da sua vida lendo esse texto bobo, mas saiba que te admiro muito. E lembra daquela frase? Quando crescer, quero ser igual ao Marquinhos. KKK Se cuida, irmão. Eu te amo muito! ❤️"
+            let index = 0;
+
+            function digitar() {
+                if (index < texto.length) {
+                    mensagem.innerHTML += texto.charAt(index);
+                    index++;
+                    setTimeout(digitar, 20); // Aumenta a velocidade da digitação
+                }
+            }
+
+            mensagem.style.opacity = "1";
+            mensagem.innerHTML = "";
+            digitar(); // Inicia o efeito de digitação
+
+            // Mostra o quadro suspenso
+            quadro.style.display = "block";
+            quadro.style.animation = "descer 1.5s ease forwards";
+            textoQuadro.style.animation = "fadeIn 2s ease-in-out forwards";
+        }
+    </script>
+    <style>
+        @keyframes descer {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .quadro {
+            display: none;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            background-color: white;
+            padding: 10px;
+            border: 2px solid black;
+            text-align: center;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .quadro img {
+            width: 100%;
+            height: auto;
+        }
+
+        #texto-quadro {
+            opacity: 0;
+            font-size: 16px;
+            color: black;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <audio id="audio" src="suspense.mp3"></audio> <!-- Adicione um arquivo de som de suspense -->
+    <div class="background"></div> <!-- Fundo animado -->
+    <div class="card">
+        <h1>Mensagem Misteriosa</h1>
+        <p id="mensagem"></p>
+        <button id="botao" onclick="mostrarMensagem()">Revelar</button>
+    </div>
+    <div id="quadro" class="quadro">
+        <p id="texto-quadro">Amo quando estamos juntos ❤️</p>
+        <img src="juntos.jpg" alt="Imagem de recordação">
+    </div>
+</body>
+</html>
