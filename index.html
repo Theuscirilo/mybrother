@@ -25,7 +25,7 @@
                 if (index < texto.length) {
                     mensagem.innerHTML += texto.charAt(index);
                     index++;
-                    setTimeout(digitar, 20); // Aumenta a velocidade da digitação
+                    setTimeout(digitar, 20); // Velocidade de digitação
                 }
             }
 
@@ -40,6 +40,70 @@
         }
     </script>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow-y: auto; /* Adiciona barra de rolagem */
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        button {
+            background-color: #ffcc00;
+            color: #000;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        button:hover {
+            background-color: #e6b800;
+        }
+
+        #mensagem {
+            margin-top: 15px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* Animação do quadro */
         @keyframes descer {
             from { transform: translateY(-100%); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
@@ -52,21 +116,22 @@
 
         .quadro {
             display: none;
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
+            position: relative;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 350px;
             background-color: white;
             padding: 10px;
             border: 2px solid black;
             text-align: center;
             box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
         }
 
         .quadro img {
             width: 100%;
             height: auto;
+            border-radius: 5px;
         }
 
         #texto-quadro {
@@ -75,19 +140,47 @@
             color: black;
             margin-top: 5px;
         }
+
+        /* Responsividade para celulares */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .card {
+                padding: 15px;
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .quadro {
+                max-width: 300px;
+            }
+
+            #texto-quadro {
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
     <audio id="audio" src="suspense.mp3"></audio> <!-- Adicione um arquivo de som de suspense -->
-    <div class="background"></div> <!-- Fundo animado -->
     <div class="card">
         <h1>Mensagem Misteriosa</h1>
         <p id="mensagem"></p>
         <button id="botao" onclick="mostrarMensagem()">Revelar</button>
     </div>
     <div id="quadro" class="quadro">
-        <p id="texto-quadro">Amo quando estamos juntos ❤️</p>
-        <img src="juntos.jpg" alt="Imagem de recordação">
-    </div>
-</body>
-</html>
+        <p id="texto
